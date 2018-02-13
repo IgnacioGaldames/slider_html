@@ -1,0 +1,36 @@
+//variables
+
+//Media Queries
+$xl: "only screen and (min-width: 1200px)"
+$lg: "only screen and (min-width: 992px)"
+$md: "only screen and (min-width: 768px)"
+$sm: "only screen and (min-width: 576px)"
+$xs: "only screen and (min-width: 0px)"
+
+//Colores
+$ripley-red: #e94964
+$ripley-coral: #ec607d
+$ripley-lila: #ae80b8
+$ripley-purple: #633f7b
+$ripley-yellow: #ffd419
+$ripley-white: #fff
+$ripley-grey: #808080
+$ripley-black: #000
+
+//Alto Slider
+$altura: 400
+$alturaMovil: 380
+$rows:( 1,2,3,4,5,6,7,8,9,10,11,12)
+$z-indexes:( 10,20,30,40,50,60,70,80,90,100)
+
+//mixins
+@mixin marco($color-1, $color-2)
+    -moz-border-image: -moz-linear-gradient(top, $color-1 0%, $color-2 100%)
+    -webkit-border-image: -webkit-linear-gradient(top, $color-1 0%, $color-2 100%)
+    border-image: linear-gradient(to bottom, $color-1 0%, $color-2 100%)
+    border-image-slice: 1
+@mixin marco-45($color-1, $color-2, $color-3)
+    -moz-border-image: -moz-linear-gradient(left, $color-1 0%, $color-2 50%, $color-3 100%)
+    -webkit-border-image: -webkit-linear-gradient(left, $color-1 50%, $color-2 0%, $color-3 100%)
+    border-image: linear-gradient(to right, $color-1 0%, $color-2 50%, $color-3 100%)
+    border-image-slice: 1

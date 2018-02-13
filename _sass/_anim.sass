@@ -1,0 +1,77 @@
+$animations: ( fadeIn: translate3d(0, 0%, 0), fadeOut: translate3d(0, 0%, 0), fadeInRight: translate3d(100%, 0, 0), fadeInLeft: translate3d(-100%, 0, 0), fadeInDown: translate3d(0, -100%, 0), fadeInUp: translate3d(0, 100%, 0))
+
+$delays: ("1": 1s, "1-5": 1.5s, "2": 2s, "2-5": 2.5s, "3": 3s)
+
+$animationDuration: 0.75s
+$animation-timing-function: ease-in-out
+$animationIteration: 1
+$animation-delay: 0.5s
+$animation-direction: normal
+$animation-fill-mode: both
+$animation-play-state: initial
+
+//Mixins
+@mixin delay-mixin($theDelay)
+    animation-delay: $theDelay
+    -moz-animation-delay: $theDelay
+    -webkit-animation-delay: $theDelay
+    -o-animation-delay: $theDelay
+
+@mixin myKeyframes($myAnimationName, $theTransform)
+    @keyframes #{$myAnimationName}
+        from
+            opacity: 0
+            transform: $theTransform
+        to
+            opacity: 1
+            transform: none
+
+@mixin animation-mixin($animation-name)
+    animation-name: $animation-name
+    -moz-animation-name: $animation-name
+    -webkit-animation-name: $animation-name
+    animation-name: $animation-name
+//Clase animation
+
+.animation
+    animation-duration: $animationDuration
+    -moz-animation-duration: $animationDuration
+    -webkit-animation-duration: $animationDuration
+    -o-animation-duration: $animationDuration
+    animation-timing-function: $animation-timing-function 
+    -moz-animation-timing-function: $animation-timing-function 
+    -webkit-animation-timing-function: $animation-timing-function 
+    -o-animation-timing-function: $animation-timing-function 
+    animation-iteration-count: $animationIteration
+    -moz-animation-iteration-count: $animationIteration
+    -webkit-animation-iteration-count: $animationIteration
+    -o-animation-iteration-count: $animationIteration
+    animation-direction: $animation-direction
+    -moz-animation-direction: $animation-direction
+    -webkit-animation-direction: $animation-direction
+    -o-animation-direction: $animation-direction
+    animation-fill-mode: $animation-fill-mode
+    -moz-animation-fill-mode: $animation-fill-mode
+    -webkit-animation-fill-mode: $animation-fill-mode
+    -o-animation-fill-mode: $animation-fill-mode
+    animation-play-state: $animation-play-state
+    -moz-animation-play-state: $animation-play-state
+    -webkit-animation-play-state: $animation-play-state
+    -o-animation-play-state: $animation-play-state
+    animation-delay: $animation-delay
+    -moz-animation-delay: $animation-delay
+    -webkit-animation-delay: $animation-delay
+    -o-animation-delay: $animation-delay
+    
+//Eachs
+
+@each $myAnimationName, $myAnimationTransform in $animations
+    @include myKeyframes(#{$myAnimationName}, $myAnimationTransform)
+    .owl-item.active
+        .#{$myAnimationName}
+            @include animation-mixin($myAnimationName)
+    @each $myDelayName, $myDelayValue in $delays
+        .owl-item.active
+            .#{$myAnimationName}-delay-#{$myDelayName}
+                @include animation-mixin($myAnimationName)
+                @include delay-mixin($myDelayValue)
